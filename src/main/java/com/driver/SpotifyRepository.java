@@ -91,6 +91,7 @@ public class SpotifyRepository {
         }
         Song song = new Song(title, length);
         List<Song> songs1 = new ArrayList<>();
+        songs.add(song);
         if(albumSongMap.containsKey(album1)){
             songs1 = albumSongMap.get(album1);
         }
@@ -214,8 +215,8 @@ public class SpotifyRepository {
         Song song = new Song();
         for(Song s : songs){
             if(Objects.equals(s.getTitle(), songTitle)){
-                song = s;
                 hasSong = true;
+                song = s;
                 break;
             }
         }
