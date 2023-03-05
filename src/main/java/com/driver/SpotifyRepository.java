@@ -215,6 +215,7 @@ public class SpotifyRepository {
         for(Song s : songs){
             if(Objects.equals(s.getTitle(), songTitle)){
                 song = s;
+                hasSong = true;
                 break;
             }
         }
