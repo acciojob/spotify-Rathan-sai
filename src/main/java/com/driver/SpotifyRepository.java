@@ -68,8 +68,8 @@ public class SpotifyRepository {
         Album album = new Album(title);
         albums.add(album);
         List<Album> albumsList = new ArrayList<>();
-        if(artistAlbumMap.containsKey(artistName)){
-            albumsList = artistAlbumMap.get(artistName);
+        if(artistAlbumMap.containsKey(artist)){
+            albumsList = artistAlbumMap.get(artist);
         }
         albumsList.add(album);
         artistAlbumMap.put(artist, albumsList);
@@ -91,8 +91,8 @@ public class SpotifyRepository {
         }
         Song song = new Song(title, length);
         List<Song> songs1 = new ArrayList<>();
-        if(albumSongMap.containsKey(albumName)){
-            songs1 = albumSongMap.get(albumName);
+        if(albumSongMap.containsKey(album1)){
+            songs1 = albumSongMap.get(album1);
         }
         songs1.add(song);
         albumSongMap.put(album1, songs1);
@@ -188,7 +188,7 @@ public class SpotifyRepository {
         }
         User user1 = new User();
         for(Map.Entry<User, Playlist> userPlaylistEntry : creatorPlaylistMap.entrySet()){
-            if(userPlaylistEntry.getValue().getTitle() == playlistTitle){
+            if(Objects.equals(userPlaylistEntry.getValue().getTitle(), playlistTitle)){
                 user1 = userPlaylistEntry.getKey();
             }
         }
@@ -213,7 +213,7 @@ public class SpotifyRepository {
         boolean hasSong = false;
         Song song = new Song();
         for(Song s : songs){
-            if(s.getTitle() == songTitle){
+            if(Objects.equals(s.getTitle(), songTitle)){
                 song = s;
                 break;
             }
@@ -259,7 +259,7 @@ public class SpotifyRepository {
 
     public String mostPopularArtist() {
         Artist artist = new Artist();
-        int max = 0;
+        int max = Integer.MIN_VALUE;
         for(Artist artist1 : artists){
             if(max < artist1.getLikes()){
                 artist = artist1;
@@ -271,7 +271,7 @@ public class SpotifyRepository {
 
     public String mostPopularSong() {
         Song song = new Song();
-        int max = 0;
+        int max = Integer.MIN_VALUE;
         for(Song song1 : songs){
             if(max < song1.getLikes()){
                 song = song1;
